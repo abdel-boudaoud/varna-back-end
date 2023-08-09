@@ -2,6 +2,7 @@ const ignoredWords = [
   "the",
   "at",
   "in",
+  "i",
   "on",
   "is",
   "and",
@@ -11,6 +12,10 @@ const ignoredWords = [
   "to",
   "for",
   "of",
+  "not"
+  , 
+  "but", 
+  "that",
   "with",
   "you",
   "me",
@@ -21,6 +26,8 @@ const ignoredWords = [
   "they",
   "them",
   "are",
+  "has",
+  "did",
   "am",
   "is",
   "was",
@@ -63,7 +70,10 @@ getFrequency = (array, value) => {
     }
   }).length;
 
-  if (!wordsFrequency.filter((list) => list.word === value).length > 0) {
+  if (
+    !wordsFrequency.filter((list) => list.word === value).length > 0 &&
+    !ignoredWords.includes(value)
+  ) {
     wordsFrequency.push({ word: value, frqeuency: n });
   }
 };
