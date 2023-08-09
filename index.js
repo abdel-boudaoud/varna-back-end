@@ -30,17 +30,20 @@ const ignoredWords = [
   "being",
 ];
 
-let testP = `The Blackwell Reference Grammars are essential companions for students of modern
-languages at senior secondary school and undergraduate level. The volumes provide
-a comprehensive survey of the grammar of each language and include plentiful examples.
-The series will cover the major European languages, including French, German, Spanish,
-Portuguese, and Russian.`;
+let testP = `Several books have been written in English about the Mongol
+conquests, the subsequent empires which the Mongols ruled, the
+travellers who visited them and even the diplomatic relations
+between their khans and the papacy. But nothing has been written
+about the Mongol invasion of Europe. In this book I have rashly
+endeavoured to fill that gap. But I did not set out to write a
+detailed account of every event that took place in Europe during
+the invasion. I have simply attempted to tell the story of an
+extraordinary campaign, outline its causes and far-reaching consequences and place it in its historical perspective.`;
 
 let testWords = testP
   .toLowerCase()
   .replace(/[\r\n]/gm, " ")
   .split(" ");
-// console.log(testWords);
 
 let evaluateWords = (words) => {
   newWords = [];
@@ -49,9 +52,6 @@ let evaluateWords = (words) => {
       newWords.push(word);
     }
   });
-
-  console.log(newWords);
-  console.log(`length is =>`, newWords.length);
 };
 
 //get words frequency
@@ -63,8 +63,9 @@ getFrequency = (array, value) => {
     }
   }).length;
 
-  // console.log(`the word ${value} has been mentioned ${n} times`)
-  wordsFrequency.push({ word: value, frqeuency: n });
+  if (!wordsFrequency.filter((list) => list.word === value).length > 0) {
+    wordsFrequency.push({ word: value, frqeuency: n });
+  }
 };
 
 testWords.forEach((word) => {
@@ -72,6 +73,6 @@ testWords.forEach((word) => {
 });
 console.log(
   wordsFrequency.sort((a, b) => {
-    return b.frqeuency - a.frqeuency ;
+    return b.frqeuency - a.frqeuency;
   })
 );
