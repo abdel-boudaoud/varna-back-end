@@ -238,13 +238,15 @@ getFrequency = (array, value) => {
   if (
     !wordsFrequency.filter((list) => list.word === value).length > 0 &&
     checker.notCommon(value) &&
-    !parseInt(value)
+    !parseInt(value) &&
+    value.length > 3
   ) {
     wordsFrequency.push({
       word: value,
       frqeuency: n,
       index: testWords.indexOf(value),
       sentence: getExample(value, testP),
+      length: value.length,
     });
   }
 };
@@ -257,6 +259,4 @@ let wordsByfrequency = wordsFrequency.sort((a, b) => {
   return b.frqeuency - a.frqeuency;
 });
 
-console.log(wordsByfrequency);
-
-
+console.log(wordsByfrequency[10])
