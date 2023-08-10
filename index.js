@@ -1,6 +1,6 @@
 let checker = require("./commonWords");
 
-let testP = `S everal books have been written in English about the Mongol
+let testP = `Several books have been written in English about the Mongol
 conquests, the subsequent empires which the Mongols ruled, the
 travellers who visited them and even the diplomatic relations
 between their khans and the papacy. But nothing has been written
@@ -213,6 +213,18 @@ let evaluateWords = (words) => {
     }
   });
 };
+//get an example of the word
+let getExample = (word, paragraph) => {
+  let targetWord = word;
+
+  const index = paragraph.toLowerCase().indexOf(word);
+
+  for (let i = index; i < paragraph.length; i++) {
+    if (paragraph[i] == "." || paragraph[i] == ",") {
+      return paragraph.slice(index, i).replace(/[\r\n]/gm, " ");
+    }
+  }
+};
 
 //get words frequency
 let wordsFrequency = [];
@@ -225,9 +237,15 @@ getFrequency = (array, value) => {
 
   if (
     !wordsFrequency.filter((list) => list.word === value).length > 0 &&
-    checker.notCommon(value) && !parseInt(value)
+    checker.notCommon(value) &&
+    !parseInt(value)
   ) {
-    wordsFrequency.push({ word: value, frqeuency: n, index: testWords.indexOf(value) });
+    wordsFrequency.push({
+      word: value,
+      frqeuency: n,
+      index: testWords.indexOf(value),
+      sentence: getExample(value, testP),
+    });
   }
 };
 
@@ -238,4 +256,7 @@ testWords.forEach((word) => {
 let wordsByfrequency = wordsFrequency.sort((a, b) => {
   return b.frqeuency - a.frqeuency;
 });
+
+console.log(wordsByfrequency);
+
 
