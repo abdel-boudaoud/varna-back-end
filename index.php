@@ -11,14 +11,24 @@ $theWords = explode(" ", clean_text($test));
 $testWords = [];
 foreach($theWords as $word){
     if(not_common($word, $commonWords) && !$word == "" && !intval($word)){
-        array_push($testWords, $word);
+        array_push($testWords, ['the word'=>$word, 'frequency'=>array_count_values($theWords)[$word]]);
     
     }
     
 }
 
-var_dump($testWords);
 
+
+$vocabularyList = array_filter($testWords,function($word){
+    if($word['frequency'] > 5){
+        return $word;
+    }
+});
+
+
+var_dump(array_unique( $vocabularyList, SORT_REGULAR));
+
+?>
 
 
 
