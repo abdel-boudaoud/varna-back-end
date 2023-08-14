@@ -5,7 +5,7 @@ include("tools.php");
 
 
 
-$test = file_get_contents("test-paragraph.txt");
+$test = file_get_contents("book.txt");
 
 $theWords = explode(" ", clean_text($test));
 $testWords = [];
@@ -26,7 +26,8 @@ $vocabularyList = array_filter($testWords,function($word){
 });
 
 
-var_dump(array_unique( $vocabularyList, SORT_REGULAR));
+var_dump(get_final_list($vocabularyList))
+
 
 ?>
 
