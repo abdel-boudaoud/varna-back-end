@@ -10,7 +10,7 @@ $test = file_get_contents("book.txt");
 $theWords = explode(" ", clean_text($test));
 $testWords = [];
 foreach($theWords as $word){
-    if(not_common($word, $commonWords) && !$word == "" && !intval($word)){
+    if(not_common($word, "B2") && !$word == "" && !intval($word)){
         array_push($testWords, ['the word'=>$word, 'frequency'=>array_count_values($theWords)[$word]]);
     
     }

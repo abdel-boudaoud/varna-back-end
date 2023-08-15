@@ -1,8 +1,28 @@
 <?php
 include('words.php');
+
+
+
+function get_words_by_level($level){
+   global $a1, $a2, $b1, $b2, $c1;
+   if($level == "A1"){
+       return  $a1;
+   }elseif($level == "A2"){
+       return $a2;
+
+   }else if($level == "B1"){
+       return $b1;
+   }else if($level == "B2"){
+       return $b2;
+   }else if($level == "C1"){
+       return $c1;
+   }
+}
+
 //check if one of the common words array contains a certain word
-function not_common($word, $wordsArray)
+function not_common($word, $level)
 {
+   $wordsArray = get_words_by_level($level);
    if (in_array($word, $wordsArray)) {
       return false;
    } else {
@@ -31,3 +51,4 @@ function get_final_list($array)
 
    return $firstList;
 }
+
